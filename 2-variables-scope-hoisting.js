@@ -60,6 +60,14 @@ console.log(INSTRUCTOR); // Outputs: Muqaddas Zahra
 // INSTRUCTOR = "Maham Fatime"; // Throws error: Assignment to constant variable
 console.log(INSTRUCTOR); // Outputs: Muqaddas Zahra
 
+// const varibale must be initialized at the time of declaration
+//const PI;
+// PI = 3.14;  // Throws error: Missing initializer in const declaration
+
+const PI=3.14; // Correct way to declare a const variable
+console.log(PI); // Outputs: 3.14
+
+
 console.log(
   "------------------------redeclaration of variables & scope------------------"
 );
@@ -67,7 +75,8 @@ console.log(
 // ------------------------Redeclaration of Variables & Scope------------------------
 // - `var` allows redeclaration of variables in the same scope.
 // - `let` and `const` do not allow redeclaration in the same scope.
-// - Demonstrates the difference in redeclaration behavior.
+// - `let` and `const` allow redeclaration in different scopes because their memory is created separately.
+
 
 var familyName = "Ali";
 var familyName = "Khan"; // Redeclaring the variable familyName with var
@@ -88,6 +97,9 @@ console.log(
 //- variables declared with `let and const can be redeclared in different scopes because their memory is created separately.
 // - Demonstrates how variables can have different values in different scopes.
 
+
+
+//-----------------------------------Example 1---------------------------------
 let familyName2 = "Ali";
 
 function showFamilyName() {
@@ -98,3 +110,63 @@ function showFamilyName() {
 
 showFamilyName(); // Call the function to see the output
 console.log("Global scope", familyName2); // Outputs: Ali (global scope)
+
+
+
+//-----------------------------------Example 2--------------------------------
+let bookTitle = "The Alchemist";
+
+
+if(bookTitle==="The Alchemist")
+  {
+    {
+      let bookPrice=1000;
+      //let- Block scoped variables can be accessed inside the block they are defined in.
+      console.log("Book Price",bookPrice); // Outputs: 1000 (block scope)
+    }
+    //let- Block scoped variables can't be accessed outside the block they are defined in.
+    //console.log("Book price", bookPrice); // Throws error: bookPrice is not defined (block scope) --
+  }
+  else
+  {
+    let bookPrice = 2000;
+    console.log("Book price in else block", bookPrice); // Outputs: 2000 (block scope)
+  }
+
+
+ var author= "Paulo Coelho";
+ var author= "J.K. Rowling"; 
+  console.log("Author", author); // Outputs: J.K. Rowling (function scope) -- var allows redeclaration in the same scope
+
+
+//-----------------------------------Example 3: Block and Function Scope---------------------------------
+
+let letscopecheck = 1;
+let letscopecheck2= 1; //global scope variable
+if (true) {
+  let letscope = 2;
+  letscope++;
+
+  let letscopecheck = 2;
+  letscopecheck++;
+  console.log(letscopecheck); //output: 3 - from inside of block
+
+  //global scope variable can be accessed inside of block
+  console.log(letscopecheck2); //output: 1 - from outside of block
+
+  var varscope = 2;
+  varscope++;
+}
+
+console.log(varscope); // output:3 , var is not block scoped , can be accessed outside of block
+console.log(letscopecheck); //output1 ---from outside of block
+
+
+
+function letvarscope()
+{
+    let scopelet=1;
+    var scopevar=2;
+}
+//console.log(scopelet) //error: scopelet is not defined, let is block scoped and can't be accessed outside of function
+//console.log(scopevar); //error: var is function scoped, can't be accessed outside of function
